@@ -1,0 +1,23 @@
+sudo: required
+services:
+  - docker
+
+
+before_install:
+  - docker build -t artempankov/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run artempankov/react-test npm test -- --coverage
+
+after_success:
+  - docker build -t artempankov/multi-client ./client
+  - docker build -t artempankov/multi-nginx ./nginx
+  - docker build -t artempankov/multi-server ./server
+  - docker build -t artempankov/multi-worker ./worker
+  # Log in to Docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # Take those images and push them to docker hub
+  - docker push artempankov/multi-client
+  - docker push artempankov/multi-nginx
+  - docker push artempankov/multi-server
+  - docker push artempankov/multi-worker
