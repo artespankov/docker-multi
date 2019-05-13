@@ -4,7 +4,7 @@ services:
 before_install:
   - docker build -t artempankov/react-test -f ./client/Dockerfile.dev ./client
 script:
-  - docker run artempankov/react-test npm test -- --coverage
+  - docker run artempankov/react-test npm test -e CI=true -- --coverage
 after_success:
   - docker build -t artempankov/multi-client ./client
   - docker build -t artempankov/multi-nginx ./nginx
