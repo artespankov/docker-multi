@@ -15,7 +15,7 @@ function App() {
 
           </header>
           <div>
-            <Link to="/">Home Page </Link>
+            <Link to="/">Home Page (FIB CALCULATOR)</Link>
             <Link to="/axillary-page">Axillary Page</Link>
             <Route exact path="/" component={Fib}/>
             <Route path="/axillary-page" component={OtherPage}/>
