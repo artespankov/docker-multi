@@ -1,2 +1,2 @@
 # multi-docker
-Docket practice with multi-tier web apps
+Docker practice with multi-tier web apps
